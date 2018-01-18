@@ -1,0 +1,10 @@
+LOCAL_PATH:= $(call my-dir)
+include $(CLEAR_VARS)
+
+LOCAL_SRC_FILES := su.cpp 
+LOCAL_MODULE := su
+LOCAL_MODULE_FILENAME := su
+LOCAL_ARM_MODE := arm
+LOCAL_LDFLAGS += -fPIE -pie
+LOCAL_CFLAGS += -fPIE
+include $(BUILD_EXECUTABLE)

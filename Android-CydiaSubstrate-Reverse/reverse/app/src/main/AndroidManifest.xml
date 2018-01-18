@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.saurik.substrate">
+    <uses-permission android:name="cydia.permission.SUBSTRATE"/>
+
+    <permission android:name="cydia.permission.SUBSTRATE"
+        android:label="modify code from other packages"
+        android:protectionLevel="dangerous"
+        android:permissionGroup="android.permission-group.DEVELOPMENT_TOOLS"
+        />
+    <application android:label="Cydia Substrate" android:icon="@drawable/launcher">
+        <receiver android:name=".PackageReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".RestartReceiver" android:permission="cydia.permission.SUBSTRATE">
+            <intent-filter>
+                <action android:name="com.saurik.substrate.RESTART" />
+            </intent-filter>
+        </receiver>
+        <activity android:label="Substrate" android:name=".SetupActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+    <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="17" />
+    <uses-permission android:name="cydia.permission.SUBSTRATE" />
+    <uses-permission android:name="android.permission.ACCESS_SUPERUSER" />
+    <uses-permission android:name="android.permission.INTERNET" />
+</manifest>

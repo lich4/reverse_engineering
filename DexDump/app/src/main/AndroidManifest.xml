@@ -1,0 +1,16 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    android:installLocation="internalOnly"
+    package="lichao.dexdump"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="21" />
+
+    <application android:hasCode="false">
+    </application>
+
+    <uses-permission android:name="cydia.permission.SUBSTRATE"/>
+
+</manifest>

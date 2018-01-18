@@ -1,0 +1,24 @@
+可用于android模拟器脱壳，适用于百度系产品，其他厂家未测，原理类似改改应该就能用
+
+1.安装百度钱包apk
+2.成功安装cydia substrate框架 (arm/x86 && os<=android4.4) 
+http://www.cydiasubstrate.com/download/com.saurik.substrate.apk
+3.为cydia编写插件(DexDump.rar)并安装
+4.取出/data/data/com.b.wallet/???.odex
+5.从远程终端拷贝依赖库(如遇错误提示则如法炮制)
+cd syslib
+adb pull /data/dalvik-cache/system@framework@core.jar@classes.dex core.jar
+adb pull /data/dalvik-cache/system@framework@core-junit.jar@classes.dex core-junit.jar
+adb pull /data/dalvik-cache/system@framework@bouncycastle.jar@classes.dex bouncycastle.jar
+adb pull /data/dalvik-cache/system@framework@ext.jar@classes.dex ext.jar
+adb pull /data/dalvik-cache/system@framework@framework.jar@classes.dex framework.jar
+adb pull /data/dalvik-cache/system@framework@telephony-common.jar@classes.dex telephony-common.jar
+adb pull /data/dalvik-cache/system@framework@mms-common.jar@classes.dex mms-common.jar
+adb pull /data/dalvik-cache/system@framework@android.policy.jar@classes.dex android.policy.jar
+adb pull /data/dalvik-cache/system@framework@services.jar@classes.dex services.jar
+adb pull /data/dalvik-cache/system@framework@apache-xml.jar@classes.dex apache-xml.jar
+6.反编译odex为class(假设系统为android4.4 对应api=19)
+java -jar baksmali-2.1.0.jar -a 19 -d syslibs -x unpatch-com.b.wallet-2472.odex -o out
+7.将class打包为dex
+java -jar smali-2.1.0.jar out -o wallet.dex
+
